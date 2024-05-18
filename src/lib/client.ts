@@ -12,7 +12,7 @@ export const fetchAllBlogs = async (): Promise<BlogType[]> => {
     customRequestInit: {
       cache: "no-store",
       next: {
-        revalidate: 3600,
+        revalidate: 0,
       },
     },
   });
