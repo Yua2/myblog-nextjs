@@ -22,6 +22,9 @@ export const fetchDetailBlog = async (contentId: string): Promise<BlogType> => {
   const detailBlog = await client.getListDetail<BlogType>({
     endpoint: "blogs",
     contentId: contentId,
+    customRequestInit: {
+      cache: "no-store",
+    },
   });
   return detailBlog;
 };
