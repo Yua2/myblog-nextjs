@@ -11,9 +11,6 @@ export const fetchAllBlogs = async (): Promise<BlogType[]> => {
     endpoint: "blogs",
     customRequestInit: {
       cache: "no-store",
-      next: {
-        revalidate: 0,
-      },
     },
   });
   return allBlogs.contents;
