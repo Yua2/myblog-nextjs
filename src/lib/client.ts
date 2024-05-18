@@ -11,7 +11,7 @@ export const fetchAllBlogs = async (): Promise<BlogType[]> => {
     endpoint: "blogs",
     customRequestInit: {
       next: {
-        revalidate: 3600,
+        revalidate: 60,
       },
     },
   });
