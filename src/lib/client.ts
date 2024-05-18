@@ -10,7 +10,6 @@ export const fetchAllBlogs = async (): Promise<BlogType[]> => {
   const allBlogs = await client.getList<BlogType>({
     endpoint: "blogs",
     customRequestInit: {
-      cache: "no-store",
       next: {
         revalidate: 3600,
       },
