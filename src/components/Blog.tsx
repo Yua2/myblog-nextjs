@@ -1,7 +1,6 @@
 import { BlogType } from "@/types/types";
 import { Card, CardContent, Typography } from "@mui/material";
 import Link from "next/link";
-import parse from "html-react-parser";
 
 type BlogProps = {
   blog: BlogType;
