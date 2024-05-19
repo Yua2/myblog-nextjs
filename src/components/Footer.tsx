@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Box sx={{ backgroundColor: "primary.main", color: "white", padding: 2 }}>
       <Typography variant="h6" component="div">
-        MyBlog
+        Yua2ブログ
       </Typography>
       <Box
         sx={{
@@ -17,13 +17,10 @@ const Footer = () => {
         }}
       >
         <Link href="/" color="inherit">
-          ホーム
+          トップ
         </Link>
-        <Link href="/about" color="inherit">
-          アバウト
-        </Link>
-        <Link href="/contact" color="inherit">
-          コンタクト
+        <Link href="/profile" color="inherit">
+          プロフィール
         </Link>
       </Box>
     </Box>
