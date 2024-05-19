@@ -23,8 +23,22 @@ export const fetchDetailBlog = async (contentId: string): Promise<BlogType> => {
     endpoint: "blogs",
     contentId: contentId,
     customRequestInit: {
-      cache: "no-store",
+      next: {
+        revalidate: 300,
+      },
     },
   });
   return detailBlog;
 };
+
+// export const fetchAllBlogTags = async (): Promise<BlogTagType[]> => {
+//   const allBlogTags = await client.getList<BlogTagType>({
+//     endpoint: "blogtags",
+//     customRequestInit: {
+//       next: {
+//         revalidate: 300,
+//       },
+//     },
+//   });
+//   return allBlogTags.contents;
+// };
