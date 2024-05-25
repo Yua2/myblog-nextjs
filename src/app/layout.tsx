@@ -23,7 +23,12 @@ export default function RootLayout({
     <html lang="jp">
       <body
         className={inter.className}
-        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+          backgroundColor: "#f0f0f0",
+        }}
       >
         <AppProvider>
           <Header />
