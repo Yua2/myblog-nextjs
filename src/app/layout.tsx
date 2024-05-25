@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Suspense } from "react";
 import Loading from "./loading";
+import AppProvider from "@/provider";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400"] });
 
@@ -24,11 +25,15 @@ export default function RootLayout({
         className={inter.className}
         style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
       >
-        <Header />
-        <main style={{ flex: "1 0 auto" }}>
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-        </main>
-        <Footer />
+        <AppProvider>
+          <Header />
+          <div style={{ display: "flex", flex: "1 0 auto" }}>
+            <main style={{ flexGrow: 1 }}>
+              <Suspense fallback={<Loading />}>{children}</Suspense>
+            </main>
+          </div>
+          <Footer />
+        </AppProvider>
       </body>
     </html>
   );
