@@ -14,7 +14,7 @@ const Blog = ({ blog }: BlogProps) => {
             {blog.title}
           </Typography>
           <Typography variant="body2" component="div">
-            {new Date(blog.createdAt).toLocaleDateString()}
+            {new Date(blog.updatedAt).toLocaleDateString()}
           </Typography>
           <Typography variant="body2" component="div"></Typography>
         </CardContent>

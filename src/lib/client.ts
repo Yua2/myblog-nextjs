@@ -9,6 +9,7 @@ export const client = createClient({
 export const fetchAllBlogs = async (): Promise<BlogType[]> => {
   const allBlogs = await client.getList<BlogType>({
     endpoint: "blogs",
+    queries: { orders: "-updatedAt" },
     customRequestInit: {
       next: {
         revalidate: 300,
