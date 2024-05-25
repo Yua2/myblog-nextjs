@@ -1,29 +1,28 @@
 "use client";
 
-import { fetchAllBlogs } from "@/lib/client";
 import { allBlogsAtom, pageNumAtom } from "@/recoil/atom";
 import { useEffect, useMemo } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Blog } from "./Blog";
 import { blogsPerPage } from "@/constants/constants";
+import { BlogType } from "@/types/types";
 
-const BlogList = () => {
+type BlogListProps = {
+  allBlogs: BlogType[];
+};
+const BlogList = ({ allBlogs }: BlogListProps) => {
   const [blogList, setBlogList] = useRecoilState(allBlogsAtom);
   const pageNum = useRecoilValue(pageNumAtom);
 
   const displayedBlogs = useMemo(
-    () => blogList.slice((pageNum - 1) * blogsPerPage, pageNum * blogsPerPage),
-    [blogList, pageNum]
+    () => allBlogs.slice((pageNum - 1) * blogsPerPage, pageNum * blogsPerPage),
+    [allBlogs, pageNum]
   );
 
-  // 初期表示時に全ブログを取得
+  // グローバルステートとしてブログデータを保持する
   useEffect(() => {
-    const fetchData = async () => {
-      const allBlogs = await fetchAllBlogs();
-      setBlogList(allBlogs);
-    };
-    fetchData();
-  }, [setBlogList]);
+    setBlogList(allBlogs);
+  }, [allBlogs, setBlogList]);
 
   return (
     displayedBlogs.length > 0 &&

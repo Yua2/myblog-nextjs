@@ -10,6 +10,9 @@ const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar>
+        <Link href="/">
+          <Typography variant="h4">Yua2ブログ</Typography>
+        </Link>
         <Box flexGrow={1} />
         <Link href="/">
           <IconButton color="inherit" sx={{ flexDirection: "column" }}>

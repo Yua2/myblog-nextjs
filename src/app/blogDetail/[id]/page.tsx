@@ -1,5 +1,5 @@
 import { fetchDetailBlog } from "@/lib/client";
-import { Card, CardContent, Container, Typography } from "@mui/material";
+import { Card, CardContent, Chip, Container, Typography } from "@mui/material";
 import parse from "html-react-parser";
 
 const BlogDetail = async ({ params }: { params: { id: string } }) => {
@@ -9,16 +9,38 @@ const BlogDetail = async ({ params }: { params: { id: string } }) => {
     <Container maxWidth="md" sx={{ marginTop: 3, marginBottom: 3 }}>
       <Card sx={{ padding: 3 }}>
         <CardContent>
-          <Typography variant="h3" component="h3" fontWeight="bold">
+          <Typography variant="h5" fontWeight="bold">
             {blog.title}
           </Typography>
-          <Typography variant="body1" component="div">
+          {blog.tags.length > 0 &&
+            blog.tags.map((tag) => (
+              <Chip key={tag.id} label={tag.name} style={{ margin: "5px" }} />
+            ))}
+          <Typography variant="body2" component="div" style={{ opacity: 0.5 }}>
+            <span style={{ marginRight: 10 }}>
+              最終更新日:{" "}
+              {new Date(blog.updatedAt).toLocaleDateString("ja-JP", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}
+            </span>
+            投稿日:
+            {new Date(blog.createdAt).toLocaleDateString("ja-JP", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })}
+          </Typography>
+          <Typography variant="body1" component="div" style={{ marginTop: 20 }}>
             {parse(blog.body)}
           </Typography>
         </CardContent>
       </Card>
     </Container>
-  ) : null;
+  ) : (
+    <div>該当記事を取得することが出来ませんでした。</div>
+  );
 };
 
 export default BlogDetail;
