@@ -1,6 +1,7 @@
 import { fetchDetailBlog } from "@/lib/client";
 import { Card, CardContent, Chip, Container, Typography } from "@mui/material";
 import parse from "html-react-parser";
+import "zenn-content-css";
 
 const BlogDetail = async ({ params }: { params: { id: string } }) => {
   const blog = await fetchDetailBlog(params.id);
@@ -32,7 +33,12 @@ const BlogDetail = async ({ params }: { params: { id: string } }) => {
               day: "2-digit",
             })}
           </Typography>
-          <Typography variant="body1" component="div" style={{ marginTop: 20 }}>
+          <Typography
+            variant="body1"
+            component="div"
+            style={{ marginTop: 20 }}
+            className="znc"
+          >
             {parse(blog.body)}
           </Typography>
         </CardContent>
