@@ -24,7 +24,7 @@ const SmallSearchField = ({ onKeyDown }: SmallSearchFieldProps) => {
   return (
     <>
       <SearchIcon
-        style={{ cursor: "pointer", marginRight: 5, marginBottom: 3 }}
+        style={{ cursor: "pointer", marginBottom: 3 }}
         onClick={handleClick}
       />
       {isOpened &&

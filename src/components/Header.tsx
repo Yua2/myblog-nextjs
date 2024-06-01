@@ -19,7 +19,7 @@ const Header = () => {
           borderRadius={1}
         >
           <Link href="/">
-            <Typography variant="h5" color="white" sx={{ paddingInline: 3 }}>
+            <Typography color="white" sx={{ paddingInline: 3 }} fontSize={18}>
               Yua2ブログ
             </Typography>
           </Link>
