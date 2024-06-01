@@ -1,15 +1,18 @@
 "use client";
 
-import { TextField, InputAdornment } from "@mui/material";
+import { TextField, InputAdornment, useMediaQuery } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { pageNumAtom } from "@/recoil/atom";
 import { useRecoilState } from "recoil";
+import { createPortal } from "react-dom";
 
 const SearchField = () => {
   const router = useRouter();
   const [pageNum, setPageNum] = useRecoilState<number>(pageNumAtom);
+  const matches = useMediaQuery("(min-width:655px)");
+  const [isMounted, setIsMounted] = useState(false);
 
   // キーが押されたときの処理
   const handleKeyDown = useCallback(
@@ -23,7 +26,7 @@ const SearchField = () => {
 
       // 検索クエリをエンコードしてURLに追加
       const queryParams = encodeURIComponent(
-        (event.target as HTMLInputElement).value
+        (event.target as HTMLInputElement).value.trim()
       );
       router.push(`/?search=${queryParams}`);
       setPageNum(1);
@@ -32,11 +35,17 @@ const SearchField = () => {
     [router, setPageNum]
   );
 
-  return (
+  // レンダリング時にマウント状態をtrueにする
+  // 仕様デバイスがスマートフォンの場合はcreatePortalを使って描画するため、isMountedが必要
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  return matches ? (
     <TextField
       variant="outlined"
       size="small"
-      placeholder="記事、ジャンルを検索"
+      placeholder="記事を検索"
       sx={{ marginRight: 2 }}
       InputProps={{
         startAdornment: (
@@ -47,6 +56,26 @@ const SearchField = () => {
       }}
       onKeyDown={handleKeyDown}
     />
+  ) : (
+    isMounted &&
+      createPortal(
+        <TextField
+          fullWidth
+          variant="outlined"
+          size="small"
+          placeholder="記事を検索"
+          sx={{ padding: 2 }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+          onKeyDown={handleKeyDown}
+        />,
+        document.getElementsByClassName("smartphone-header-spacer")[0]
+      )
   );
 };
 export default SearchField;

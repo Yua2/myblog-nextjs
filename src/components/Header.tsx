@@ -42,6 +42,7 @@ const Header = () => {
           </IconButton>
         </Link>
       </Toolbar>
+      <div className="smartphone-header-spacer" />
     </AppBar>
   );
 };
