@@ -17,8 +17,9 @@ const MainSearchField = ({ searchWord }: MainSearchFieldProps) => {
     if (
       event.key !== "Enter" ||
       !(event.target as HTMLInputElement).value?.trim()
-    )
+    ) {
       return;
+    }
 
     const queryParams = encodeURIComponent(
       (event.target as HTMLInputElement).value
