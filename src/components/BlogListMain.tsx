@@ -72,8 +72,20 @@ const BlogListMain = ({ allBlogs }: BlogListMainProps) => {
           </Typography>
         </Card>
       )}
-      <BlogList displayedBlogs={displayedBlogs} />
-      <BlogPagination count={maxPage} page={pageNum} onChange={handleChange} />
+      {displayedBlogs.length === 0 ? (
+        <Typography variant="body1" sx={{ marginTop: 3 }}>
+          記事が見つかりませんでした。
+        </Typography>
+      ) : (
+        <>
+          <BlogList displayedBlogs={displayedBlogs} />
+          <BlogPagination
+            count={maxPage}
+            page={pageNum}
+            onChange={handleChange}
+          />
+        </>
+      )}
     </Container>
   );
 };
