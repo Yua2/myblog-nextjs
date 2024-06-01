@@ -9,7 +9,7 @@ import parse from "html-react-parser";
 import { useSearchParams } from "next/navigation";
 import BlogList from "./BlogList";
 import BlogPagination from "./BlogPagination";
-import { Card, Typography, Container, useMediaQuery } from "@mui/material";
+import { Card, Typography, Container } from "@mui/material";
 import MainSearchField from "./MainSearchField";
 
 type BlogListMainProps = {
@@ -19,7 +19,6 @@ const BlogListMain = ({ allBlogs }: BlogListMainProps) => {
   const [blogList, setBlogList] = useRecoilState(allBlogsAtom);
   const allblogs = useRecoilValue(allBlogsAtom);
   const [pageNum, setPageNum] = useRecoilState<number>(pageNumAtom);
-  const matches = useMediaQuery("(min-width:655px)");
   const searchParams = useSearchParams();
   const searchWord = searchParams.get("search");
 
@@ -64,7 +63,7 @@ const BlogListMain = ({ allBlogs }: BlogListMainProps) => {
 
   return (
     <Container maxWidth="md" sx={{ marginTop: "10px", marginBottom: "10px" }}>
-      {searchWord && matches ? (
+      {searchWord ? (
         <MainSearchField searchWord={searchWord} />
       ) : (
         <Card sx={{ marginTop: 3, marginBottom: 3 }}>
