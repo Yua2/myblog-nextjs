@@ -31,13 +31,13 @@ export default function RootLayout({
         }}
       >
         <AppProvider>
-          <Header />
-          <div style={{ display: "flex", flex: "1 0 auto" }}>
-            <main style={{ flexGrow: 1 }}>
-              <Suspense fallback={<Loading />}>{children}</Suspense>
-            </main>
-          </div>
-          <Footer />
+          <Suspense fallback={<Loading />}>
+            <Header />
+            <div style={{ display: "flex", flex: "1 0 auto" }}>
+              <main style={{ flexGrow: 1 }}>{children}</main>
+            </div>
+            <Footer />
+          </Suspense>
         </AppProvider>
       </body>
     </html>
