@@ -1,3 +1,5 @@
+"use client";
+
 import { pageNumAtom } from "@/recoil/atom";
 import { BlogTagType } from "@/types/types";
 import { Chip } from "@mui/material";
@@ -11,6 +13,7 @@ type TagCardProps = {
 const TagCard = ({ tag }: TagCardProps) => {
   const router = useRouter();
   const [pageNum, setPageNum] = useRecoilState<number>(pageNumAtom);
+
   const handleClick = useCallback(() => {
     const queryParams = encodeURIComponent(tag.name);
     router.push(`/?search=${queryParams}`);
@@ -19,7 +22,6 @@ const TagCard = ({ tag }: TagCardProps) => {
 
   return (
     <Chip
-      key={tag.id}
       label={tag.name}
       style={{ margin: "5px" }}
       clickable

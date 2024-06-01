@@ -6,7 +6,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import { HomeOutlined } from "@mui/icons-material";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import Link from "next/link";
-import SearchField from "./SearchField";
+import SearchField from "./HeaderSearchField";
 
 const Header = () => {
   return (

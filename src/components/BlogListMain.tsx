@@ -9,6 +9,8 @@ import parse from "html-react-parser";
 import { useSearchParams } from "next/navigation";
 import BlogList from "./BlogList";
 import BlogPagination from "./BlogPagination";
+import { Card, Typography, Container } from "@mui/material";
+import MainSearchField from "./MainSearchField";
 
 type BlogListMainProps = {
   allBlogs: BlogType[];
@@ -60,10 +62,19 @@ const BlogListMain = ({ allBlogs }: BlogListMainProps) => {
   }, [allBlogs, setBlogList]);
 
   return (
-    <>
+    <Container maxWidth="md" sx={{ marginTop: "10px", marginBottom: "10px" }}>
+      {searchWord ? (
+        <MainSearchField searchWord={searchWord} />
+      ) : (
+        <Card sx={{ marginTop: 3, marginBottom: 3 }}>
+          <Typography variant="body1" fontWeight="bold" sx={{ padding: 3 }}>
+            私生活や業務で考えたことを書き出したり、技術分野のメモをまとめるためのブログ。
+          </Typography>
+        </Card>
+      )}
       <BlogList displayedBlogs={displayedBlogs} />
       <BlogPagination count={maxPage} page={pageNum} onChange={handleChange} />
-    </>
+    </Container>
   );
 };
 export default BlogListMain;

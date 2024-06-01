@@ -29,7 +29,7 @@ const SearchField = () => {
       setPageNum(1);
       (event.target as HTMLInputElement).value = "";
     },
-    [router]
+    [router, setPageNum]
   );
 
   return (

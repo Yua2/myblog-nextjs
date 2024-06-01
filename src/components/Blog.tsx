@@ -9,7 +9,7 @@ type BlogProps = {
 };
 const Blog = ({ blog }: BlogProps) => {
   return (
-    <Card key={blog.id} style={{ margin: "10px" }}>
+    <Card style={{ marginTop: "10px", marginBottom: "10px" }}>
       <CardContent>
         <Typography component="div">
           {new Date(blog.updatedAt).toLocaleDateString("ja-JP", {
@@ -23,8 +23,9 @@ const Blog = ({ blog }: BlogProps) => {
             {blog.title}
           </Typography>
         </Link>
-        {blog.tags.length > 0 &&
-          blog.tags.map((tag) => <TagCard tag={tag} key={tag.id} />)}
+        {blog.tags.map((tag) => (
+          <TagCard tag={tag} key={tag.id} />
+        ))}
       </CardContent>
     </Card>
   );

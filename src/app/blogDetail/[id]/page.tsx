@@ -1,5 +1,6 @@
+import TagCard from "@/components/TagCard";
 import { fetchDetailBlog } from "@/lib/client";
-import { Card, CardContent, Chip, Container, Typography } from "@mui/material";
+import { Card, CardContent, Container, Typography } from "@mui/material";
 import parse from "html-react-parser";
 import "zenn-content-css";
 
@@ -13,10 +14,9 @@ const BlogDetail = async ({ params }: { params: { id: string } }) => {
           <Typography variant="h5" fontWeight="bold">
             {blog.title}
           </Typography>
-          {blog.tags.length > 0 &&
-            blog.tags.map((tag) => (
-              <Chip key={tag.id} label={tag.name} style={{ margin: "5px" }} />
-            ))}
+          {blog.tags.map((tag) => (
+            <TagCard key={tag.id} tag={tag} />
+          ))}
           <Typography variant="body2" component="div" style={{ opacity: 0.5 }}>
             <span style={{ marginRight: 10 }}>
               最終更新日:{" "}
