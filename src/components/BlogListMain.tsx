@@ -9,7 +9,7 @@ import parse from "html-react-parser";
 import { useSearchParams } from "next/navigation";
 import BlogList from "./BlogList";
 import BlogPagination from "./BlogPagination";
-import { Card, Typography, Container } from "@mui/material";
+import { Card, Typography, Container, useMediaQuery } from "@mui/material";
 import MainSearchField from "./MainSearchField";
 
 type BlogListMainProps = {
@@ -21,6 +21,7 @@ const BlogListMain = ({ allBlogs }: BlogListMainProps) => {
   const [pageNum, setPageNum] = useRecoilState<number>(pageNumAtom);
   const searchParams = useSearchParams();
   const searchWord = searchParams.get("search");
+  const matches = useMediaQuery("(min-width:655px)");
 
   // 検索ワードに一致するブログを取得
   const filteredBlogs = useMemo(() => {
@@ -63,7 +64,7 @@ const BlogListMain = ({ allBlogs }: BlogListMainProps) => {
 
   return (
     <Container maxWidth="md" sx={{ marginTop: "10px", marginBottom: "10px" }}>
-      {searchWord ? (
+      {searchWord && matches ? (
         <MainSearchField searchWord={searchWord} />
       ) : (
         <Card sx={{ marginTop: 3, marginBottom: 3 }}>

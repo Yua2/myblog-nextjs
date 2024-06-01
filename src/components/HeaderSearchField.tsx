@@ -47,9 +47,11 @@ const SearchField = () => {
       );
       router.push(`/?search=${queryParams}`);
       setPageNum(1);
-      (event.target as HTMLInputElement).value = "";
+      if (matches) {
+        (event.target as HTMLInputElement).value = "";
+      }
     },
-    [router, setPageNum]
+    [matches, router, setPageNum]
   );
 
   return matches ? (

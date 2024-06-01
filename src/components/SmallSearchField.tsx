@@ -4,6 +4,7 @@ import { TextField } from "@mui/material";
 import { useState, useCallback, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { createPortal } from "react-dom";
+import { useSearchParams } from "next/navigation";
 
 type SmallSearchFieldProps = {
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -12,6 +13,8 @@ type SmallSearchFieldProps = {
 const SmallSearchField = ({ onKeyDown }: SmallSearchFieldProps) => {
   const [isOpened, setIsOpened] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const searchParam = useSearchParams();
+  const searchWord = searchParam.get("search");
 
   const handleClick = useCallback(() => {
     setIsOpened(!isOpened);
@@ -31,6 +34,8 @@ const SmallSearchField = ({ onKeyDown }: SmallSearchFieldProps) => {
         isMounted &&
         createPortal(
           <TextField
+            key={searchWord}
+            defaultValue={searchWord}
             fullWidth
             variant="outlined"
             size="small"
