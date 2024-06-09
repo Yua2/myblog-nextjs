@@ -5,6 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { createPortal } from "react-dom";
 import { useSearchParams } from "next/navigation";
+import TagMenu from "./TagMenu";
 
 type SmallSearchFieldProps = {
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -43,6 +44,7 @@ const SmallSearchField = ({ onKeyDown }: SmallSearchFieldProps) => {
             sx={{ padding: 2 }}
             InputProps={{
               startAdornment: <SearchIcon />,
+              endAdornment: <TagMenu />,
             }}
             onKeyDown={onKeyDown}
           />,

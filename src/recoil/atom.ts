@@ -1,4 +1,4 @@
-import { BlogType } from "@/types/types";
+import { BlogTagType, BlogType } from "@/types/types";
 import { atom } from "recoil";
 
 export const allBlogsAtom = atom<BlogType[]>({
@@ -11,7 +11,7 @@ export const pageNumAtom = atom<number>({
   default: 1,
 });
 
-// export const searchWordAtom = atom<string>({
-//   key: "searchWord",
-//   default: "",
-// });
+export const allBlogTagsAtom = atom<BlogTagType[]>({
+  key: "allBlogTags",
+  default: [],
+});

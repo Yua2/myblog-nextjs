@@ -5,6 +5,7 @@ import { TextField, InputAdornment } from "@mui/material";
 import { useRouter } from "next/navigation";
 import SearchIcon from "@mui/icons-material/Search";
 import { useRecoilState } from "recoil";
+import TagMenu from "./TagMenu";
 
 type MainSearchFieldProps = {
   searchWord: string;
@@ -43,6 +44,7 @@ const MainSearchField = ({ searchWord }: MainSearchFieldProps) => {
             <SearchIcon />
           </InputAdornment>
         ),
+        endAdornment: <TagMenu />,
       }}
       onKeyDown={handleKeyDown}
     />

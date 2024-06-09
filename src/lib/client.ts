@@ -1,5 +1,5 @@
 import { createClient } from "microcms-js-sdk";
-import { BlogType } from "../types/types";
+import { BlogTagType, BlogType } from "../types/types";
 
 export const client = createClient({
   serviceDomain: process.env.NEXT_PUBLIC_SERVICE_DOMAIN!,
@@ -32,14 +32,14 @@ export const fetchDetailBlog = async (contentId: string): Promise<BlogType> => {
   return detailBlog;
 };
 
-// export const fetchAllBlogTags = async (): Promise<BlogTagType[]> => {
-//   const allBlogTags = await client.getList<BlogTagType>({
-//     endpoint: "blogtags",
-//     customRequestInit: {
-//       next: {
-//         revalidate: 300,
-//       },
-//     },
-//   });
-//   return allBlogTags.contents;
-// };
+export const fetchAllBlogTags = async (): Promise<BlogTagType[]> => {
+  const allBlogTags = await client.getList<BlogTagType>({
+    endpoint: "blogtags",
+    customRequestInit: {
+      next: {
+        revalidate: 300,
+      },
+    },
+  });
+  return allBlogTags.contents;
+};

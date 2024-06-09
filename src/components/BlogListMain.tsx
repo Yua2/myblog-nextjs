@@ -1,23 +1,25 @@
 "use client";
 
-import { allBlogsAtom, pageNumAtom } from "@/recoil/atom";
+import { allBlogTagsAtom, allBlogsAtom, pageNumAtom } from "@/recoil/atom";
 import { useCallback, useEffect, useMemo } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { blogsPerPage } from "@/constants/constants";
-import { BlogType } from "@/types/types";
+import { BlogTagType, BlogType } from "@/types/types";
 import parse from "html-react-parser";
 import { useSearchParams } from "next/navigation";
 import BlogList from "./BlogList";
 import BlogPagination from "./BlogPagination";
-import { Card, Typography, Container, useMediaQuery } from "@mui/material";
+import { Typography, Container, useMediaQuery } from "@mui/material";
 import MainSearchField from "./MainSearchField";
+import BlogDescription from "./BlogDescription";
 
 type BlogListMainProps = {
   allBlogs: BlogType[];
+  allBlogTags: BlogTagType[];
 };
-const BlogListMain = ({ allBlogs }: BlogListMainProps) => {
+const BlogListMain = ({ allBlogs, allBlogTags }: BlogListMainProps) => {
   const [blogList, setBlogList] = useRecoilState(allBlogsAtom);
-  const allblogs = useRecoilValue(allBlogsAtom);
+  const [blogTagList, setBlogTagList] = useRecoilState(allBlogTagsAtom);
   const [pageNum, setPageNum] = useRecoilState<number>(pageNumAtom);
   const searchParams = useSearchParams();
   const searchWord = searchParams.get("search");
@@ -60,18 +62,15 @@ const BlogListMain = ({ allBlogs }: BlogListMainProps) => {
   // グローバルステートとしてブログデータを保持する
   useEffect(() => {
     setBlogList(allBlogs);
-  }, [allBlogs, setBlogList]);
+    setBlogTagList(allBlogTags);
+  }, [allBlogTags, allBlogs, setBlogList, setBlogTagList]);
 
   return (
     <Container maxWidth="md" sx={{ marginTop: "10px", marginBottom: "10px" }}>
       {searchWord && matches ? (
         <MainSearchField searchWord={searchWord} />
       ) : (
-        <Card sx={{ marginTop: 3, marginBottom: 3 }}>
-          <Typography variant="body1" fontWeight="bold" sx={{ padding: 3 }}>
-            私生活や業務で考えたことを書き出したり、技術分野のメモをまとめるためのブログ。
-          </Typography>
-        </Card>
+        <BlogDescription />
       )}
       {displayedBlogs.length === 0 ? (
         <Typography variant="body1" sx={{ marginTop: 3 }}>

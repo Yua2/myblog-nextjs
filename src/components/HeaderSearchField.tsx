@@ -55,12 +55,14 @@ const SearchField = () => {
   );
 
   return matches ? (
+    // PC用の検索フィールド
     <TextField
       {...commonProps}
       sx={{ marginRight: 2 }}
       onKeyDown={handleKeyDown}
     />
   ) : (
+    // スマホ用の検索フィールド
     <SmallSearchField onKeyDown={handleKeyDown} />
   );
 };
