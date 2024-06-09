@@ -38,6 +38,11 @@ const TagMenu = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <Link key={`menu-item-link-all`} href={`/?search=すべて`}>
+          <MenuItem key={`menu-item-all`} onClick={handleClose}>
+            {"すべて"}
+          </MenuItem>
+        </Link>
         {blogTagList.map((tag) => (
           <Link key={`menu-item-link-${tag.id}`} href={`/?search=${tag.name}`}>
             <MenuItem key={`menu-item-${tag.id}`} onClick={handleClose}>

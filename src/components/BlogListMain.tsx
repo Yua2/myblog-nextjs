@@ -27,14 +27,15 @@ const BlogListMain = ({ allBlogs, allBlogTags }: BlogListMainProps) => {
 
   // 検索ワードに一致するブログを取得
   const filteredBlogs = useMemo(() => {
+    if (!searchWord || searchWord === "すべて") return allBlogs;
+
     return allBlogs.filter((blog) => {
-      if (!searchWord) return true;
+      if (blog.title.includes(searchWord)) return true;
+
       const parsedBody = parse(blog.body).toString();
-      return (
-        blog.title.includes(searchWord) ||
-        parsedBody.includes(searchWord) ||
-        blog.tags.some((tag) => tag.name.includes(searchWord))
-      );
+      if (parsedBody.includes(searchWord)) return true;
+
+      return blog.tags.some((tag) => tag.name.includes(searchWord));
     });
   }, [allBlogs, searchWord]);
 
@@ -59,7 +60,6 @@ const BlogListMain = ({ allBlogs, allBlogTags }: BlogListMainProps) => {
     [setPageNum]
   );
 
-  // グローバルステートとしてブログデータを保持する
   useEffect(() => {
     setBlogList(allBlogs);
     setBlogTagList(allBlogTags);
