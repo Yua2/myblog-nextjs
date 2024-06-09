@@ -12,7 +12,7 @@ const Blog = ({ blog }: BlogProps) => {
     <Card style={{ marginTop: "10px", marginBottom: "10px" }}>
       <CardContent>
         <Typography component="div">
-          {new Date(blog.updatedAt).toLocaleDateString("ja-JP", {
+          {new Date(blog.createdAt).toLocaleDateString("ja-JP", {
             year: "numeric",
             month: "2-digit",
             day: "2-digit",
