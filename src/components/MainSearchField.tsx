@@ -37,6 +37,7 @@ const MainSearchField = ({ searchWord }: MainSearchFieldProps) => {
       variant="outlined"
       size="small"
       placeholder="記事を検索"
+      autoComplete="off"
       sx={{ marginRight: 2 }}
       InputProps={{
         startAdornment: (

@@ -41,6 +41,7 @@ const SmallSearchField = ({ onKeyDown }: SmallSearchFieldProps) => {
             variant="outlined"
             size="small"
             placeholder="記事を検索"
+            autoComplete="off"
             sx={{ padding: 2 }}
             InputProps={{
               startAdornment: <SearchIcon />,

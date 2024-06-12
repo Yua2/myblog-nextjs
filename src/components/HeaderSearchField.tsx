@@ -22,6 +22,7 @@ const SearchField = () => {
     variant: "outlined" as TextFieldVariants,
     size: "small" as "small" | "medium",
     placeholder: "記事を検索",
+    autoComplete: "off",
     InputProps: {
       startAdornment: (
         <InputAdornment position="start">
