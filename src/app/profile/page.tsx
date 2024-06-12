@@ -35,7 +35,7 @@ const Profile = () => {
           </ListItem>
           <ListItem>
             <Typography variant="body1">
-              仕事：IT企業にエンジニアとして就職。現在は研究員。
+              仕事：IT企業にシステムエンジニアとして就職。現在は研究員。
             </Typography>
           </ListItem>
         </List>
