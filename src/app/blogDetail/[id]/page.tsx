@@ -17,7 +17,11 @@ const BlogDetail = async ({ params }: { params: { id: string } }) => {
           {blog.tags.map((tag) => (
             <TagCard key={tag.id} tag={tag} />
           ))}
-          <Typography variant="body2" component="div" style={{ opacity: 0.5 }}>
+          <Typography
+            variant="body2"
+            component="div"
+            style={{ opacity: 0.5, fontSize: "0.8rem" }}
+          >
             <span style={{ marginRight: 10 }}>
               最終更新日:{" "}
               {new Date(blog.updatedAt).toLocaleDateString("ja-JP", {
