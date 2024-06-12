@@ -26,7 +26,7 @@ const BlogDetail = async ({ params }: { params: { id: string } }) => {
                 day: "2-digit",
               })}
             </span>
-            投稿日:
+            投稿日:{" "}
             {new Date(blog.createdAt).toLocaleDateString("ja-JP", {
               year: "numeric",
               month: "2-digit",
