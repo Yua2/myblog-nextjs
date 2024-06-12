@@ -9,7 +9,7 @@ const BlogDetail = async ({ params }: { params: { id: string } }) => {
 
   return blog ? (
     <Container maxWidth="md" sx={{ marginTop: 3, marginBottom: 3 }}>
-      <Card sx={{ padding: 3 }}>
+      <Card sx={{ padding: 2 }}>
         <CardContent>
           <Typography variant="h5" fontWeight="bold">
             {blog.title}
@@ -36,7 +36,7 @@ const BlogDetail = async ({ params }: { params: { id: string } }) => {
           <Typography
             variant="body1"
             component="div"
-            style={{ marginTop: 20 }}
+            style={{ marginTop: 20, fontSize: "1.0rem" }}
             className="znc"
           >
             {parse(blog.body)}
